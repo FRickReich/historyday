@@ -15,7 +15,6 @@ class Header extends Component
 
     }
 
-    
     render()
     {
         return (
@@ -26,19 +25,13 @@ class Header extends Component
                             <NavLink exact to="/" activeClassName="active">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/counter" activeClassName="active">Counter</NavLink>
+                            <NavLink to="/entries" activeClassName="active">Entries</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/repos" activeClassName="active">Repos</NavLink>
+                            <NavLink to="/newEntry" activeClassName="active">New Entry</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/dashboard" activeClassName="active">Dashboard</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/container" activeClassName="active">Container</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/asdf" activeClassName="active">404 Page</NavLink>
+                            <NavLink to="/error" activeClassName="active">404 Page</NavLink>
                         </li>
                     </ul>
                 </nav>

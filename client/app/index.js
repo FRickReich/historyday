@@ -13,10 +13,8 @@ import App from './components/App/App';
 
 import NotFound from './components/App/NotFound';
 import Home from './components/Home/Home';
-import Counter from './components/Counter/Counter';
-import Repos from './components/Repos/Repos';
-import Dashboard from './components/Dashboard/Dashboard';
-import Container from './components/Container/Container';
+import Entries from './components/Entries/Entries';
+import NewEntry from './components/NewEntry/NewEntry';
 
 import './styles/styles.scss';
 
@@ -24,12 +22,10 @@ render((
     <Router>
         <App>
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/counter" component={ Counter } />
-                <Route path="/repos" component={ Repos } />
-                <Route path="/dashboard" component={ Dashboard } />
-                <Route path="/container" component={ Container } />
-                <Route component={NotFound}/>
+                <Route exact path="/" component={ Home } />
+                <Route path="/entries" component={ Entries } />
+                <Route path="/newEntry" component={ NewEntry } />
+                <Route component={ NotFound }/>
             </Switch>
         </App>
     </Router>

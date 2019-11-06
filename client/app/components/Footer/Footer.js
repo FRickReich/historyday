@@ -19,7 +19,7 @@ class Footer extends Component
         return (
             <footer>
                 <hr />
-                <p>test © 2019 by <a href="mailto:frickreich@gmail.com">F. Rick Reich</a></p>
+                <p>historyday © 2019 by <a href="mailto:frickreich@gmail.com">F. Rick Reich</a></p>
             </footer>
         )
     }
