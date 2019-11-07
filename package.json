@@ -57,5 +57,8 @@
         "webpack-hot-middleware": "^2.21.2",
         "webpack-merge": "^4.1.2",
         "whatwg-fetch": "^2.0.3"
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.7.0"
     }
 }

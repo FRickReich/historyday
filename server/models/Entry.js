@@ -7,6 +7,10 @@ const EntrySchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    subTitle: {
+        type: String,
+        default: ''
+    },
     url: {
         type: String,
         default: ''

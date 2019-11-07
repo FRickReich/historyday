@@ -18,16 +18,16 @@ module.exports = (app) =>
         
         const entry = new Entry();
         
-        entry.title = body.title.value;
-        entry.image = body.image.value;
-        entry.dateDay = parseInt(body.day.value);
-        entry.dateMonth = parseInt(body.month.value);
-        entry.dateYear = parseInt(body.year.value);
-        entry.text = body.text.value;
-        entry.author = body.author.value;
-        entry.tags = body.tags.value.replace(/\s+/g, '').toLowerCase().split(',');
-
-        entry.url = body.title.value.replace(/\s+/g, '-').toLowerCase();
+        entry.title = body.title;
+        entry.subTitle = body.subTitle;
+        entry.image = body.image;
+        entry.dateDay = parseInt(body.day);
+        entry.dateMonth = parseInt(body.month);
+        entry.dateYear = parseInt(body.year);
+        entry.text = body.text;
+        entry.author = body.author;
+        entry.tags = body.tags.replace(/\s+/g, '').toLowerCase().split(',');
+        entry.url = body.title.replace(/\s+/g, '-').toLowerCase();
 
         entry.save((err, user) =>
         {

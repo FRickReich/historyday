@@ -5,22 +5,9 @@ import 'whatwg-fetch';
 
 import {
     currentDate,
-    maxDaysOfMonth
-} from '../../utils/date';
-
-/**
- * internal values:
- *  - URL
- *  - creationDate
- * input values:
- *  - title
- *  - image url
- *  - day
- *  - month
- *  - year
- *  - author
- *  - text
- */
+    maxDaysOfMonth,
+    getFromStorage
+} from '../../utils';
 
 class NewEntry extends Component
 {
@@ -31,10 +18,15 @@ class NewEntry extends Component
         this.state =
         {
             token: '',
-            loading: false,
+            isLoading: false,
+            userData: [  ],
             formControls:
             {
                 title:
+                {
+                    value: ''
+                },
+                subTitle:
                 {
                     value: ''
                 },
@@ -60,7 +52,7 @@ class NewEntry extends Component
                 },
                 author:
                 {
-                    value: 'admin'
+                    value: ''
                 },
                 tags:
                 {
@@ -72,7 +64,67 @@ class NewEntry extends Component
 
     componentDidMount()
     {
-        
+        const obj = getFromStorage('gandhi');
+
+        if (obj && obj.token) 
+        {
+            const { token } = obj;
+            
+            // Verify token
+            fetch('/api/account/verify?token=' + token)
+            .then(res => res.json())
+            .then(json =>
+                {
+                    if (json.success)
+                    {
+                        this.getUserInfo();
+                        
+                        this.setState({
+                            token,
+                            isLoading: false
+                        });
+                    }
+                    else
+                    {
+                        this.setState({
+                            isLoading: false,
+                            userData: [  ]
+                        });
+                    }
+                });
+        }
+    }
+
+    getUserInfo()
+    {
+        const obj = getFromStorage('gandhi');
+
+        if (obj && obj.token) 
+        {
+            const { token } = obj;
+            
+            // Verify token
+            fetch('/api/account/?id=' + token)
+            .then(res => res.json())
+            .then(json =>
+            {
+                console.log(json);
+
+                if (json.success)
+                {
+                    this.setState({
+                        isLoading: false,
+                        userData: json.data
+                    });
+                }
+            });
+        }
+        else
+        {
+            this.setState({
+                isLoading: false,
+            });
+        }
     }
 
     changeHandler(event)
@@ -93,7 +145,7 @@ class NewEntry extends Component
 
     createEntry()
     {
-        
+        const { formControls, userData } = this.state;
 
         fetch('/api/entries/new', 
         {
@@ -102,7 +154,18 @@ class NewEntry extends Component
             {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this.state.formControls),
+            //body: JSON.stringify(this.state.formControls),
+            body: JSON.stringify({
+                title: formControls.title.value,
+                subTitle: formControls.subTitle.value,
+                image: formControls.image.value,
+                day: formControls.day.value,
+                month: formControls.month.value,
+                year: formControls.year.value,
+                text: formControls.text.value,
+                author: userData.email,
+                tags: formControls.tags.value
+            })
         })
         .then(res => res.json())
         .then(json =>
@@ -113,9 +176,7 @@ class NewEntry extends Component
 
     render()
     {
-        const { formControls, entries } = this.state;
-        
-        console.log(entries);
+        const { formControls } = this.state;
 
         return (
             <div>
@@ -123,7 +184,7 @@ class NewEntry extends Component
                 <h1>Entries</h1>
 
                 {
-                    this.state.loading && <p>loading</p>
+                    this.state.isLoading && <p>loading</p>
                 }
                 <h3>Create new Entry</h3>
                 <label>title:<br/>
@@ -131,6 +192,15 @@ class NewEntry extends Component
                         name="title"
                         placeholder="Please insert a title..."
                         value={ formControls.title.value }
+                        onChange={this.changeHandler.bind(this)}
+                    />
+                    <br />
+                </label>
+                <label>subtitle:<br/>
+                    <input
+                        name="subTitle"
+                        placeholder="Please insert a subtitle..."
+                        value={ formControls.subTitle.value }
                         onChange={this.changeHandler.bind(this)}
                     />
                     <br />

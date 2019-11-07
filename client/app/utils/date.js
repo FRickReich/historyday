@@ -16,6 +16,27 @@ export function addZeroToNumber(input)
     return input < 10 ? `0${ input }` : input;
 }
 
+export function formatDate(dateDay, dateMonth, dateYear)
+{
+    const months =
+    [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+    
+    return months[dateMonth - 1] + " " + addZeroToNumber(dateDay) + ", " + dateYear
+}
+
 export function maxDaysOfMonth(month, year)
 {
     let days = 0;
