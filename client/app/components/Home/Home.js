@@ -15,15 +15,6 @@ class Home extends Component
         }
     }
 
-    handleClickOpen()
-    {
-        this.setState({ open: true })
-      };
-    
-    handleClose() {
-        this.setState({ open: false })
-    };
-
     render()
     {
         return (
