@@ -18,6 +18,10 @@ const styles = theme => ({
     }
 });
 
+/**
+ * @todo Plan and create footer
+ * @body The footer of the application should contain important elements, or not be there at all.
+ */
 class Footer extends Component 
 {
     static propTypes = {
@@ -34,13 +38,15 @@ class Footer extends Component
         const { classes } = this.props;
 
         return (
-            <BottomNavigation
-                className={ classes.footer }>
-            >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-            </BottomNavigation>
+            <>
+                {/*<BottomNavigation
+                    className={ classes.footer }>
+                >
+                    <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                </BottomNavigation>*/}
+            </>
         )
     }
 }

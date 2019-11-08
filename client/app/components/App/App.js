@@ -17,7 +17,7 @@ const App = ({ children }) => (
             { children }
         </Container>
 
-        { /*<Footer />*/ }
+        <Footer />
     </>
 );
 
