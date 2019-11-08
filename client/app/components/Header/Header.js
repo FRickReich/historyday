@@ -33,9 +33,6 @@ class Header extends Component
                         <li>
                             <NavLink to="/newEntry" activeClassName="active">New Entry</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/error" activeClassName="active">404 Page</NavLink>
-                        </li>
                     </ul>
                 </nav>
             </header>
