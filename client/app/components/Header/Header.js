@@ -14,7 +14,11 @@ class Header extends Component
     {
 
     }
-
+ 
+    /**
+     * @todo Replace temporary menu
+     * @body The temporary header menu needs to be replaced with a material-ui app-bar.
+     */
     render()
     {
         return (
